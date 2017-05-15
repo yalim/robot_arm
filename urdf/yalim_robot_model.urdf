@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot name="yalim">
+  
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+  
+  <link name="world"/>
+  
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://yalim_robot_description/meshes/base-binary.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+    </visual>
+  </link>
+  
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  
+  <joint name="torso" type="continuous">
+    <parent link="base_link"/>
+    <child link="torso"/>
+    <origin rpy="0 0 0" xyz="0 0 0.04"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  
+  <link name="torso">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://yalim_robot_description/meshes/turn_table-binary.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+    </visual>
+  </link>
+    
+    <joint name="elbow" type="continuous">
+      <parent link="torso"/>
+      <child link="elbow"/>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+    
+    <link name="elbow">
+      <visual>
+        <origin rpy="0 -1.57 0" xyz="0 0 0.04"/>
+        <geometry>
+          <mesh filename="package://yalim_robot_description/meshes/link1-binary.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+      </visual>
+    </link>
+
+    <joint name="wrist" type="continuous">
+      <parent link="elbow"/>
+      <child link="wrist"/>
+      <origin rpy="0 0 0" xyz="0 0 0.13"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+    
+    <link name="wrist">
+      <visual>
+        <origin rpy="0 -1.57 0" xyz="0 0 0.04"/>
+        <geometry>
+          <mesh filename="package://yalim_robot_description/meshes/link2-binary.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="white"/>
+      </visual>
+    </link>
+
+
+
+</robot>
